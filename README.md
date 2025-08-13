@@ -28,17 +28,18 @@ data(gss_all)
 
 #select the variables for your project
 gss_select<-gss_all%>%
-  select(natcrime, fear, courts, tax, age, race, sex, year, educ)%>%             
+<br>
+  select(natcrime, fear, courts, tax, age, race, sex, year, educ)%>%  <br>           
   mutate(across(everything(), zap_missing)) # Convert all missing codes to NA
 <br>
 
 #categorical data clean (convert to factors)
 gss_factors<-gss_select%>%
-  mutate(sex=as_factor(sex),                
-         race=as_factor(race),
-         natcrime=as_factor(natcrime),
-         fear=as_factor(fear),
-         courts=as_factor(courts),
+  mutate(sex=as_factor(sex),  <br>              
+         race=as_factor(race), <br>
+         natcrime=as_factor(natcrime), <br>
+         fear=as_factor(fear), <br>
+         courts=as_factor(courts),<br>
          tax=as_factor(tax))
 <br>
 # Check your levels
@@ -56,55 +57,55 @@ summary(gss_factors$tax)
 <br>
 
 #show the frequency table 
-gss_factors %>%
-  count(courts) %>%
+gss_factors %>% <br>
+  count(courts) %>% <br>
   mutate(percentage = n / sum(n) * 100)
 
 <br>
-gss_factors %>%
-  count(race) %>%
+gss_factors %>% <br>
+  count(race) %>% <br>
   mutate(percentage = n / sum(n) * 100)
 <br>
-gss_factors %>%
-  count(fear) %>%
+gss_factors %>% <br>
+  count(fear) %>% <br>
   mutate(percentage = n / sum(n) * 100)
 <br>
-gss_factors %>%
-  count(sex) %>%
+gss_factors %>% <br>
+  count(sex) %>% <br>
   mutate(percentage = n / sum(n) * 100)
 <br>
-gss_factors %>%
-  count(tax) %>%
+gss_factors %>% <br>
+  count(tax) %>% <br>
   mutate(percentage = n / sum(n) * 100)
 <br>
-gss_factors %>%
-  count(natcrime) %>%
+gss_factors %>% <br>
+  count(natcrime) %>% <br>
   mutate(percentage = n / sum(n) * 100)
 <br>
-gss_factors %>%
+gss_factors %>% <br>
   count(year)
 <br>
-gss_factors %>%
+gss_factors %>% <br>
   count(educ)
 <br>
 #create indicator variables from your factor variables
 gss_indicators <- gss_factors %>%
-  mutate(sex_male = if_else(sex == "male", 1, 0),  
-         sex_female = if_else(sex == "female", 1, 0),
-         race_white = if_else(race == "white", 1, 0),
-         race_black = if_else(race == "black", 1, 0),
-         race_other = if_else(race == "other", 1, 0),
-         courts_very_harsh = if_else(courts == "too harshly", 3, 0),
-         courts_harsh = if_else(courts == "not harshly enough", 2, 0),
-         courts_right = if_else(courts == "about right", 1, 0),
-         natcrime_too_lit = if_else(natcrime == "too little", 1, 0),
-         natcrime_abt_rit = if_else(natcrime == "about right",2, 0), 
-         natcrime_t_much = if_else(natcrime == "too much", 3, 0), 
-         tax_high = if_else(tax == "too high", 3, 0),
-         tax_abt_rit = if_else(tax == "about right", 2, 0),
-         tax_low = if_else(tax == "too low", 1, 0),
-         fear_yes = if_else(fear == "yes", 1, 0),
-         fear_no = if_else(fear == "no", 1, 0)
+  mutate(sex_male = if_else(sex == "male", 1, 0),  <br>
+         sex_female = if_else(sex == "female", 1, 0), <br>
+         race_white = if_else(race == "white", 1, 0), <br>
+         race_black = if_else(race == "black", 1, 0), <br>
+         race_other = if_else(race == "other", 1, 0), <br>
+         courts_very_harsh = if_else(courts == "too harshly", 3, 0), <br>
+         courts_harsh = if_else(courts == "not harshly enough", 2, 0), <br>
+         courts_right = if_else(courts == "about right", 1, 0), <br>
+         natcrime_too_lit = if_else(natcrime == "too little", 1, 0), <br>
+         natcrime_abt_rit = if_else(natcrime == "about right",2, 0), <br> 
+         natcrime_t_much = if_else(natcrime == "too much", 3, 0), <br>
+         tax_high = if_else(tax == "too high", 3, 0), <br>
+         tax_abt_rit = if_else(tax == "about right", 2, 0), <br>
+         tax_low = if_else(tax == "too low", 1, 0), <br>
+         fear_yes = if_else(fear == "yes", 1, 0), <br>
+         fear_no = if_else(fear == "no", 1, 0)<br>
   )
 <br>
 
@@ -113,7 +114,7 @@ library(tibble)
 <br>
 # Create a table listing qualitative and indicator variables
 variable_table <- tibble(
-  Qualitative_Variables = c("sex", "race", "courts", "natcrime", "tax", "fear"),
+  Qualitative_Variables = c("sex", "race", "courts", "natcrime", "tax", "fear"), <br>
   Indicator_Variables = c("sex_male, sex_female",
                           "race_white, race_black, race_other",
                           "courts_very_harsh, courts_harsh, courts_right",
